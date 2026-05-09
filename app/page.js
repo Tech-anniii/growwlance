@@ -1,9 +1,11 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import dynamic from "next/dynamic";
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import Loader from "@/components/Loader";
 
 const Stats = dynamic(() => import("@/components/Stats"), {
   ssr: false,
@@ -107,8 +109,31 @@ const process = [
 ];
 
 export default function Home() {
+  const [showLoader, setShowLoader] = useState(true);
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    if (document.readyState === "complete") {
+      setShowLoader(false);
+      return;
+    }
+
+    // Hide loader when DOMContentLoaded (faster than full load)
+    const onReady = () => setShowLoader(false);
+    window.addEventListener("DOMContentLoaded", onReady);
+
+    // Faster fallback to avoid long blocking loader
+    const fallback = setTimeout(() => setShowLoader(false), 1200);
+
+    return () => {
+      window.removeEventListener("DOMContentLoaded", onReady);
+      clearTimeout(fallback);
+    };
+  }, []);
+
   return (
     <>
+      <Loader isVisible={showLoader} />
       <motion.div
         className="bg-[#0B0F19] text-white overflow-hidden"
         variants={pageFade}

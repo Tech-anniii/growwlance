@@ -8,7 +8,7 @@ const fadeUp = {
   show: { opacity: 1, y: 0, transition: { duration: 0.6 } },
 };
 
-const whatsappNumber = "918305994766";
+const whatsappNumber = "919243467007";
 const whatsappMessage =
   "Hi Growwlance Team, I want to discuss a marketing project for my business. Please share the next steps.";
 const whatsappLink = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`;
@@ -94,7 +94,7 @@ export default function ContactPage() {
 
             <div className="space-y-4 text-gray-300">
               <p>📧 info@Growwlance.com</p>
-              <p>📞 +91 9876543210</p>
+              <p>📞 +91 9243467007</p>
               <p>📍 India</p>
             </div>
 

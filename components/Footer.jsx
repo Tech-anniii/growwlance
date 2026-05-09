@@ -29,7 +29,7 @@ export default function Footer() {
               <FaFacebook size={20} />
             </a>
             <a
-              href="https://instagram.com/growwlance"
+              href="https://www.instagram.com/growlancee.in?igsh=N2FwZmF4Z3kxczl3"
               target="_blank"
               rel="noopener noreferrer"
               className="text-gray-400 hover:text-pink-500 transition"
@@ -38,7 +38,7 @@ export default function Footer() {
               <FaInstagram size={20} />
             </a>
             <a
-              href="https://linkedin.com/company/growwlance"
+              href="https://www.linkedin.com/company/growwlance"
               target="_blank"
               rel="noopener noreferrer"
               className="text-gray-400 hover:text-amber-600 transition"
@@ -47,7 +47,7 @@ export default function Footer() {
               <FaLinkedin size={20} />
             </a>
             <a
-              href="https://wa.me/918305994766"
+              href="https://wa.me/919243467007"
               target="_blank"
               rel="noopener noreferrer"
               className="text-gray-400 hover:text-green-500 transition"
@@ -90,7 +90,7 @@ export default function Footer() {
             </li>
 
             <li className="flex items-center gap-2">
-              <Phone size={16} /> +91 8305994766
+              <Phone size={16} /> +91 9243467007
             </li>
 
             <li className="flex items-center gap-2">
