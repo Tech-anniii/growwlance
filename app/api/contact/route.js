@@ -4,9 +4,9 @@ import { NextResponse } from "next/server";
 export async function POST(req) {
   try {
     const body = await req.json();
-    const { name, email, service, message } = body;
+    const { name, phone, email, service, message } = body;
 
-    if (!name || !email || !message) {
+    if (!name || !phone || !email || !message) {
       return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
     }
 
@@ -22,7 +22,7 @@ export async function POST(req) {
 
     const to = process.env.CONTACT_RECEIVER || process.env.SMTP_USER;
 
-    const mailBody = `New contact request from ${name} (${email})\n\nService: ${service || "Not specified"}\n\nMessage:\n${message}`;
+    const mailBody = `New contact request from ${name} (${email})\n\nPhone: ${phone}\n\nService: ${service || "Not specified"}\n\nMessage:\n${message}`;
 
     await transporter.sendMail({
       from: `${name} <${email}>`,

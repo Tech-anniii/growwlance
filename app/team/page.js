@@ -1,7 +1,9 @@
 "use client";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { FaLinkedin, FaTwitter, FaGithub } from "react-icons/fa";
+import TiltCard from "@/components/TiltCard";
+import HoverRevealImage from "@/components/HoverRevealImage";
+import { FaLinkedin, FaInstagram, FaGithub } from "react-icons/fa";
 
 const team = [
   {
@@ -10,8 +12,8 @@ const team = [
     image: "/team/member1.jpeg",
     bio: "Specializes in performance marketing, driving growth for startups and brands.",
     linkedin: "https://www.linkedin.com/company/growwlance",
-    twitter: "https://twitter.com/aniketsingh",
-    portfolio: "https://www.linkedin.com/company/growwlance",
+    instagram: "https://www.instagram.com/yash._dbd_?igsh=Yml6NHp3YjFuemV5",
+    portfolio: "https://fawn-lilac-25268747.figma.site/",
   },
   {
     name: "Aniket Singh",
@@ -19,7 +21,7 @@ const team = [
     image: "/team/member2.jpeg",
     bio: "Leads technical execution and ensures projects are delivered on time with quality.",
     linkedin: "https://www.linkedin.com/in/aniket-singh-baghel-1938b5253",
-    twitter: "https://twitter.com/rahulsharma",
+    instagram: "https://www.instagram.com/aniket_singh_baghel_?igsh=ZnlxeWQ1MnVzZzZl",
     portfolio: "https://tech-aniket.netlify.app/",
   },
   {
@@ -27,8 +29,8 @@ const team = [
     role: "Social Media Manager & SEO Specialist",
     image: "/team/member3.jpeg",
     bio: "Manages social media presence and optimizes content for search engines.",
-    linkedin: "https://www.linkedin.com/in/priya-verma",
-    twitter: "https://twitter.com/priyaverma",
+    linkedin: "https://drive.google.com/drive/u/0/mobile/folders/1DET-47yGOFhFW0slHDxC_GSJ_IQ4qL6y?usp=sharing",
+    instagram: "https://www.instagram.com/growwlance.in?igsh=MWlsZms4a21nMng4cA==",
     portfolio: "https://drive.google.com/drive/u/0/mobile/folders/1DET-47yGOFhFW0slHDxC_GSJ_IQ4qL6y?usp=sharing",
   },
 ];
@@ -51,49 +53,47 @@ export default function TeamPage() {
         <div className="grid md:grid-cols-3 gap-8">
 
           {team.map((member, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: index * 0.2 }}
-              viewport={{ once: true }}
-              className="bg-white/5 p-6 rounded-2xl backdrop-blur-lg hover:scale-105 transition"
-            >
-              {/* Image */}
-              <div className="relative w-full h-64 rounded-xl overflow-hidden">
-                <Image
+            <TiltCard key={index} className="transition-transform duration-300">
+              <motion.div
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.2 }}
+                viewport={{ once: true }}
+                className="bg-white/5 p-6 rounded-2xl backdrop-blur-lg hover:scale-105 transition"
+              >
+                {/* Image with hover-reveal (desktop) */}
+                <HoverRevealImage
                   src={member.image}
                   alt={member.name}
-                  fill
-                  className="object-cover"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                 />
-              </div>
 
-              {/* Info */}
-              <h2 className="text-xl font-semibold mt-4">
-                {member.name}
-              </h2>
-              <p className="text-amber-400 text-sm">
-                {member.role}
-              </p>
+                {/* Info */}
+                <h2 className="text-xl font-semibold mt-4">
+                  {member.name}
+                </h2>
+                <p className="text-amber-400 text-sm">
+                  {member.role}
+                </p>
 
-              <p className="text-gray-400 mt-3 text-sm">
-                {member.bio}
-              </p>
+                <p className="text-gray-400 mt-3 text-sm">
+                  {member.bio}
+                </p>
 
-              {/* Social Icons */}
-              <div className="flex gap-4 mt-4">
-                <a href={member.linkedin} target="_blank" rel="noopener noreferrer" className="hover:text-amber-400 transition">
-                  <FaLinkedin size={20} />
-                </a>
-                <a href={member.twitter} target="_blank" rel="noopener noreferrer" className="hover:text-amber-400 transition">
-                  <FaTwitter size={20} />
-                </a>
-                <a href={member.portfolio} target="_blank" rel="noopener noreferrer" className="hover:text-amber-400 transition">
-                  <FaGithub size={20} />
-                </a>
-              </div>
-            </motion.div>
+                {/* Social Icons */}
+                <div className="flex gap-4 mt-4">
+                  <a href={member.linkedin} target="_blank" rel="noopener noreferrer" className="hover:text-amber-400 transition">
+                    <FaLinkedin size={20} />
+                  </a>
+                  <a href={member.instagram} target="_blank" rel="noopener noreferrer" className="hover:text-amber-400 transition">
+                    <FaInstagram size={20} />
+                  </a>
+                  <a href={member.portfolio} target="_blank" rel="noopener noreferrer" className="hover:text-amber-400 transition">
+                    <FaGithub size={20} />
+                  </a>
+                </div>
+              </motion.div>
+            </TiltCard>
           ))}
 
         </div>
@@ -106,7 +106,7 @@ export default function TeamPage() {
         </h2>
 
         <div className="mt-6 flex justify-center gap-4">
-          <button className="px-6 py-3 bg-amber-500 rounded-xl">
+          <button className="px-6 py-3 rounded-xl btn-primary">
             Book Call
           </button>
           <button className="px-6 py-3 border border-gray-600 rounded-xl">

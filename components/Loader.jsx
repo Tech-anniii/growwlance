@@ -21,14 +21,16 @@ export default function Loader({ isVisible }) {
         className="relative z-10 flex flex-col items-center gap-6 px-6 text-center"
       >
         <div className="rounded-full border border-white/10 bg-linear-to-br from-amber-500/20 to-stone-700/20 p-4 shadow-[0_0_40px_rgba(245,158,11,0.15)] backdrop-blur-md">
-          <Image
-            src="/home/Growwlance%20Logo.jpeg"
-            alt="Growwlance Logo"
-            width={96}
-            height={96}
-            className="rounded-2xl"
-            priority
-          />
+          <div className="relative h-24 w-24">
+            <Image
+              src="/home/Growwlance%20Logo.jpeg"
+              alt="Growwlance Logo"
+              fill
+              className="rounded-2xl object-contain"
+              priority
+              sizes="96px"
+            />
+          </div>
         </div>
         <div>
           <h1 className="text-4xl font-bold tracking-tight text-white md:text-5xl">Growwlance Media</h1>

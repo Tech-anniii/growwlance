@@ -29,7 +29,7 @@ export default function Footer() {
               <FaFacebook size={20} />
             </a>
             <a
-              href="https://www.instagram.com/growlancee.in?igsh=N2FwZmF4Z3kxczl3"
+              href="https://www.instagram.com/growwlance.in?igsh=MWlsZms4a21nMng4cA=="
               target="_blank"
               rel="noopener noreferrer"
               className="text-gray-400 hover:text-pink-500 transition"
@@ -86,7 +86,7 @@ export default function Footer() {
           <ul className="space-y-3 text-sm">
 
             <li className="flex items-center gap-2">
-              <Mail size={16} /> info@Growwlance.com
+              <Mail size={16} /> agencygrowlance@gmail.com
             </li>
 
             <li className="flex items-center gap-2">
@@ -99,7 +99,7 @@ export default function Footer() {
           </ul>
 
           {/* CTA */}
-          <Link href="/contact" className="mt-5 block w-full px-4 py-2 rounded-xl bg-linear-to-r from-amber-500 to-stone-700 text-white hover:scale-105 transition text-center">
+          <Link href="/contact" className="mt-5 block w-full px-4 py-2 rounded-xl btn-primary text-white hover:scale-105 transition text-center">
             Book Free Call
           </Link>
         </div>

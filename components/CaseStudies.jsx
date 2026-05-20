@@ -114,7 +114,7 @@ export default function CaseStudies() {
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.4 }}
           viewport={{ once: true }}
           className="text-center mb-16"
         >
@@ -132,7 +132,7 @@ export default function CaseStudies() {
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
-          transition={{ duration: 0.6, delay: 0.1 }}
+          transition={{ duration: 0.4, delay: 0.05 }}
           viewport={{ once: true }}
           className="flex flex-wrap justify-center gap-3 mb-16"
         >
@@ -156,14 +156,14 @@ export default function CaseStudies() {
 
         {/* Case Studies Grid */}
         <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
-          <AnimatePresence mode="wait">
+          <AnimatePresence mode="sync">
             {filteredCases.map((caseStudy, index) => (
               <motion.div
                 key={caseStudy.id}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -20 }}
-                transition={{ duration: 0.5, delay: index * 0.05 }}
+                transition={{ duration: 0.3, delay: index * 0.02 }}
                 viewport={{ once: true }}
                 className="group"
               >
@@ -198,7 +198,7 @@ export default function CaseStudies() {
                           key={i}
                           initial={{ opacity: 0, x: -10 }}
                           whileInView={{ opacity: 1, x: 0 }}
-                          transition={{ duration: 0.4, delay: 0.1 + i * 0.05 }}
+                          transition={{ duration: 0.25, delay: 0.05 + i * 0.03 }}
                           viewport={{ once: true }}
                           className="space-y-1"
                         >

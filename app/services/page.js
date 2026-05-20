@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Link from "next/link";
 
 const services = [
   {
@@ -75,9 +76,7 @@ transition-all duration-500"
               <h2 className="text-2xl font-semibold">{service.title}</h2>
               <p className="mt-4 text-gray-400">{service.desc}</p>
 
-              <button className="mt-6 px-5 py-2 rounded-xl bg-linear-to-r from-amber-500 to-stone-700 hover:scale-105 transition">
-                Learn More
-              </button>
+              
             </motion.div>
           ))}
         </div>
@@ -124,12 +123,9 @@ transition-all duration-500"
         <h2 className="text-4xl font-bold">Ready to Grow Your Business?</h2>
 
         <div className="mt-6 flex justify-center gap-4">
-          <button className="px-6 py-3 bg-amber-500 rounded-xl">
+          <Link href="/contact" className="inline-block px-6 py-3 bg-amber-500 rounded-xl text-center">
             Book Free Call
-          </button>
-          <button className="px-6 py-3 border border-gray-600 rounded-xl">
-            Get Proposal
-          </button>
+          </Link>
         </div>
       </section>
     </div>

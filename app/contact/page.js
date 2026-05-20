@@ -125,6 +125,20 @@ export default function ContactPage() {
             </div>
 
             <div>
+              <label className="text-sm text-gray-400">Phone Number</label>
+              <input
+                name="phone"
+                id="phone"
+                type="tel"
+                placeholder="Enter your phone number"
+                className="w-full mt-2 px-4 py-3 rounded-xl bg-[#0B0F19] border border-white/10 focus:outline-none focus:border-amber-500"
+                required
+              />
+            </div>
+
+            
+
+            <div>
               <label className="text-sm text-gray-400">Email</label>
               <input
                 name="email"

@@ -1,31 +1,49 @@
 "use client";
 
 import { useRef } from "react";
+import { useRouter } from "next/navigation";
+import { motion, useMotionValue, useTransform } from "framer-motion";
 
-export default function MagneticButton({ children }) {
+export default function MagneticButton({ href = "#", children, className = "" }) {
   const ref = useRef(null);
+  const router = useRouter();
+  const mx = useMotionValue(0);
+  const my = useMotionValue(0);
+  const tx = useTransform(mx, (v) => `${v / 6}px`);
+  const ty = useTransform(my, (v) => `${v / 6}px`);
 
-  const handleMouseMove = (e) => {
-    const rect = ref.current.getBoundingClientRect();
-    const x = e.clientX - rect.left - rect.width / 2;
-    const y = e.clientY - rect.top - rect.height / 2;
+  function handleMove(e) {
+    const r = ref.current?.getBoundingClientRect();
+    if (!r) return;
+    const x = e.clientX - (r.left + r.width / 2);
+    const y = e.clientY - (r.top + r.height / 2);
+    mx.set(x);
+    my.set(y);
+  }
 
-    ref.current.style.transform = `translate(${x * 0.2}px, ${y * 0.2}px)`;
-  };
+  function handleLeave() {
+    mx.set(0);
+    my.set(0);
+  }
 
-  const handleMouseLeave = () => {
-    ref.current.style.transform = "translate(0px, 0px)";
-  };
+  function handleClick(e) {
+    if (!href || href === '#') return;
+    e.preventDefault();
+    router.push(href);
+  }
 
   return (
-    <button
-      ref={ref}
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
-      className="px-6 py-3 rounded-xl bg-linear-to-r from-amber-500 to-stone-700 
-      transition duration-300 ease-out hover:shadow-[0_0_30px_rgba(245,158,11,0.6)]"
-    >
-      {children}
-    </button>
+    <div ref={ref} onMouseMove={handleMove} onMouseLeave={handleLeave} className="inline-block">
+      <motion.button
+        onClick={handleClick}
+        style={{ x: tx, y: ty }}
+        className={`inline-flex items-center justify-center ${className}`}
+        whileTap={{ scale: 0.98 }}
+        transition={{ type: "spring", stiffness: 300, damping: 20 }}
+      >
+        {children}
+      </motion.button>
+    </div>
   );
 }
+ 

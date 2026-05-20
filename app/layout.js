@@ -1,7 +1,13 @@
 import "./globals.css";
+// import dynamic from "next/dynamic";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ScrollProgress from "@/components/ScrollProgress";
+
+// ChatBot is temporarily disabled to reduce page load.
+// To re-enable, uncomment the lines below.
+// import dynamic from "next/dynamic";
+// const ChatBot = dynamic(() => import("@/components/ChatBot"));
 
 export const metadata = {
   title: {
@@ -63,6 +69,8 @@ export default function RootLayout({ children }) {
         {/* Layout */}
         <Navbar />
         {children}
+        {/* ChatBot temporarily removed to improve load time.
+          To re-enable, uncomment the `ChatBot` import and this line. */}
         <Footer />
 
       </body>

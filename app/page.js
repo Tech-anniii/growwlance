@@ -108,14 +108,30 @@ const process = [
   ["04", "Scale", "Expand proven campaigns and improve unit economics."],
 ];
 
+const starterPackages = [
+  {
+    title: "Growth Audit",
+    copy: "A focused 90-minute audit across channels, tracking, and messaging with a prioritized action plan.",
+  },
+  {
+    title: "Launch Sprint",
+    copy: "Two-week launch package: creatives, targeting, and tracking to validate early traction quickly.",
+  },
+  {
+    title: "Growth Retainer",
+    copy: "Ongoing channel execution, weekly reporting, and iterative optimizations to improve CAC and LTV.",
+  },
+];
+
 export default function Home() {
   const [showLoader, setShowLoader] = useState(true);
 
   useEffect(() => {
     if (typeof window === "undefined") return;
     if (document.readyState === "complete") {
-      setShowLoader(false);
-      return;
+      // Defer setState to avoid synchronous state update inside effect
+      const t = setTimeout(() => setShowLoader(false), 0);
+      return () => clearTimeout(t);
     }
 
     // Hide loader when DOMContentLoaded (faster than full load)
@@ -170,10 +186,10 @@ export default function Home() {
               </motion.div>
               <motion.div whileTap={{ scale: 0.97 }}>
                 <Link
-                  href="/works"
+                  href="/services"
                   className="rounded-xl border  border-white/20 px-6 py-3 font-medium transition hover:bg-white/10"
                 >
-                  View Our Work
+                  Explore Services
                 </Link>
               </motion.div>
             </motion.div>
@@ -248,7 +264,26 @@ export default function Home() {
         </div>
       </section>
 
-      <CaseStudies />
+      <section className="px-6 md:px-16 py-20">
+        <div className="mx-auto max-w-7xl">
+          <div className="flex items-center justify-between">
+            <h2 className="text-3xl font-bold md:text-4xl">Starter Packages for Startups</h2>
+            <Link href="/contact" className="text-sm text-amber-400 hover:text-amber-300">Get a custom quote →</Link>
+          </div>
+
+          <div className="mt-8 grid gap-6 md:grid-cols-3">
+            {starterPackages.map((pkg) => (
+              <article key={pkg.title} className="rounded-2xl border border-white/10 bg-white/5 p-6">
+                <h3 className="text-xl font-semibold">{pkg.title}</h3>
+                <p className="mt-3 text-sm text-gray-400">{pkg.copy}</p>
+                <div className="mt-4">
+                  <Link href="/contact" className="text-amber-400 hover:text-amber-300">Request Quote</Link>
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
 
       <section className="px-6 md:px-16 py-24 bg-white/5 border-y border-white/10">
         <div className="mx-auto max-w-7xl">
@@ -365,10 +400,10 @@ export default function Home() {
             </motion.div>
             <motion.div whileTap={{ scale: 0.97 }}>
               <Link
-                href="/works"
+                href="/services"
                 className="rounded-xl border border-white/20 px-6 py-3 font-medium hover:bg-white/10 transition"
               >
-                See All Projects
+                Explore Services
               </Link>
             </motion.div>
           </div>
