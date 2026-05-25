@@ -1,11 +1,9 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import dynamic from "next/dynamic";
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import Loader from "@/components/Loader";
 
 const Stats = dynamic(() => import("@/components/Stats"), {
   ssr: false,
@@ -13,29 +11,12 @@ const Stats = dynamic(() => import("@/components/Stats"), {
     <section className="bg-[#0B0F19] px-6 py-20">
       <div className="mx-auto max-w-6xl rounded-3xl border border-white/10 bg-white/5 p-8">
         <div className="h-8 w-72 rounded-full bg-white/10" />
-        <div className="mt-6 h-6 w-96 max-w-full rounded-full bg-white/5" />
+        <div className="mt-6 h-6 w-lg max-w-full rounded-full bg-white/5" />
         <div className="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
           <div className="h-40 rounded-2xl bg-white/5" />
           <div className="h-40 rounded-2xl bg-white/5" />
           <div className="h-40 rounded-2xl bg-white/5" />
           <div className="h-40 rounded-2xl bg-white/5" />
-        </div>
-      </div>
-    </section>
-  ),
-});
-
-const CaseStudies = dynamic(() => import("@/components/CaseStudies"), {
-  ssr: false,
-  loading: () => (
-    <section className="bg-[#0B0F19] px-6 py-24">
-      <div className="mx-auto max-w-7xl">
-        <div className="mx-auto h-10 w-96 max-w-full rounded-full bg-white/10" />
-        <div className="mx-auto mt-4 h-6 w-[32rem] max-w-full rounded-full bg-white/5" />
-        <div className="mt-14 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
-          <div className="h-[28rem] rounded-3xl border border-white/10 bg-white/5" />
-          <div className="h-[28rem] rounded-3xl border border-white/10 bg-white/5" />
-          <div className="h-[28rem] rounded-3xl border border-white/10 bg-white/5" />
         </div>
       </div>
     </section>
@@ -124,38 +105,13 @@ const starterPackages = [
 ];
 
 export default function Home() {
-  const [showLoader, setShowLoader] = useState(true);
-
-  useEffect(() => {
-    if (typeof window === "undefined") return;
-    if (document.readyState === "complete") {
-      // Defer setState to avoid synchronous state update inside effect
-      const t = setTimeout(() => setShowLoader(false), 0);
-      return () => clearTimeout(t);
-    }
-
-    // Hide loader when DOMContentLoaded (faster than full load)
-    const onReady = () => setShowLoader(false);
-    window.addEventListener("DOMContentLoaded", onReady);
-
-    // Faster fallback to avoid long blocking loader
-    const fallback = setTimeout(() => setShowLoader(false), 1200);
-
-    return () => {
-      window.removeEventListener("DOMContentLoaded", onReady);
-      clearTimeout(fallback);
-    };
-  }, []);
-
   return (
-    <>
-      <Loader isVisible={showLoader} />
-      <motion.div
-        className="bg-[#0B0F19] text-white overflow-hidden"
-        variants={pageFade}
-        initial="hidden"
-        animate="show"
-      >
+    <motion.div
+      className="bg-[#0B0F19] text-white overflow-hidden"
+      variants={pageFade}
+      initial="hidden"
+      animate="show"
+    >
       <section className="relative px-6 md:px-16 pt-28 pb-20">
         <div className="absolute -top-10 right-0 h-96 w-96 rounded-full bg-amber-500/12 blur-2xl" />
         <div className="absolute top-56 -left-10 h-72 w-72 rounded-full bg-amber-400/10 blur-3xl" />
@@ -187,27 +143,12 @@ export default function Home() {
               <motion.div whileTap={{ scale: 0.97 }}>
                 <Link
                   href="/services"
-                  className="rounded-xl border  border-white/20 px-6 py-3 font-medium transition hover:bg-white/10"
+                  className="rounded-xl border border-white/20 px-6 py-3 font-medium transition hover:bg-white/10"
                 >
                   Explore Services
                 </Link>
               </motion.div>
             </motion.div>
-
-            {/* <motion.div variants={fadeUp} className="mt-10 grid grid-cols-3 gap-4 text-center">
-              <motion.div variants={fadeUp} className="rounded-2xl border border-white/10 bg-white/5 p-4">
-                <p className="text-2xl font-bold">120+</p>
-                <p className="text-xs text-gray-400">Campaign Experiments</p>
-              </motion.div>
-              <motion.div variants={fadeUp} className="rounded-2xl border border-white/10 bg-white/5 p-4">
-                <p className="text-2xl font-bold">25+</p>
-                <p className="text-xs text-gray-400">Growth Projects</p>
-              </motion.div>
-              <motion.div variants={fadeUp} className="rounded-2xl border border-white/10 bg-white/5 p-4">
-                <p className="text-2xl font-bold">4.8/5</p>
-                <p className="text-xs text-gray-400">Client Feedback</p>
-              </motion.div>
-            </motion.div> */}
           </motion.div>
 
           <motion.div
@@ -227,9 +168,6 @@ export default function Home() {
                 sizes="(max-width: 1024px) 100vw, 50vw"
               />
             </div>
-            {/* <p className="mt-4 text-sm text-gray-400">
-              Placeholder image path: /public/home/hero-marketing-dashboard.jpg
-            </p> */}
           </motion.div>
         </div>
       </section>
@@ -238,7 +176,7 @@ export default function Home() {
 
       <section className="px-6 md:px-16 py-20 border-y border-white/10 bg-white/5">
         <div className="mx-auto max-w-7xl">
-            <div className="flex flex-wrap items-end justify-between gap-4">
+          <div className="flex flex-wrap items-end justify-between gap-4">
             <h2 className="text-3xl font-bold md:text-4xl">Core Growth Pillars</h2>
             <Link href="/services" className="text-sm text-amber-400 hover:text-amber-300">
               Explore all services →
@@ -268,7 +206,9 @@ export default function Home() {
         <div className="mx-auto max-w-7xl">
           <div className="flex items-center justify-between">
             <h2 className="text-3xl font-bold md:text-4xl">Starter Packages for Startups</h2>
-            <Link href="/contact" className="text-sm text-amber-400 hover:text-amber-300">Get a custom quote →</Link>
+            <Link href="/contact" className="text-sm text-amber-400 hover:text-amber-300">
+              Get a custom quote →
+            </Link>
           </div>
 
           <div className="mt-8 grid gap-6 md:grid-cols-3">
@@ -277,7 +217,9 @@ export default function Home() {
                 <h3 className="text-xl font-semibold">{pkg.title}</h3>
                 <p className="mt-3 text-sm text-gray-400">{pkg.copy}</p>
                 <div className="mt-4">
-                  <Link href="/contact" className="text-amber-400 hover:text-amber-300">Request Quote</Link>
+                  <Link href="/contact" className="text-amber-400 hover:text-amber-300">
+                    Request Quote
+                  </Link>
                 </div>
               </article>
             ))}
@@ -314,7 +256,10 @@ export default function Home() {
 
       <section className="px-6 md:px-16 py-24">
         <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-2">
-          <motion.div whileHover={{ y: -2, transition: { duration: 0.2 } }} className="rounded-3xl border border-white/10 bg-white/5 p-4">
+          <motion.div
+            whileHover={{ y: -2, transition: { duration: 0.2 } }}
+            className="rounded-3xl border border-white/10 bg-white/5 p-4"
+          >
             <div className="relative h-80 overflow-hidden rounded-2xl">
               <Image
                 src="/home/team-collaboration.png"
@@ -324,9 +269,6 @@ export default function Home() {
                 sizes="(max-width: 1024px) 100vw, 50vw"
               />
             </div>
-            {/* <p className="mt-4 text-sm text-gray-400">
-              Placeholder image path: /public/home/team-collaboration.jpg
-            </p> */}
           </motion.div>
 
           <div className="flex flex-col justify-center rounded-3xl border border-white/10 bg-[#111827] p-8">
@@ -410,6 +352,5 @@ export default function Home() {
         </motion.div>
       </section>
     </motion.div>
-    </>
   );
 }

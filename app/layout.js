@@ -3,6 +3,7 @@ import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ScrollProgress from "@/components/ScrollProgress";
+import WhatsAppFloat from "@/components/WhatsAppFloat";
 
 // ChatBot is temporarily disabled to reduce page load.
 // To re-enable, uncomment the lines below.
@@ -14,6 +15,7 @@ export const metadata = {
     default: "Growwlance Media | Performance Marketing & SEO Growth",
     template: "%s | Growwlance Media",
   },
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000"),
   description:
     "Performance marketing, SEO, creative strategy, and funnel execution for brands that want measurable growth.",
   keywords: [
@@ -40,7 +42,7 @@ export const metadata = {
     },
   },
   openGraph: {
-    title: "Growwlance Media | Performance Marketing & SEO Growth",
+    title: "Growwlance Marketing | Performance Marketing & SEO Growth",
     description:
       "Performance marketing, SEO, creative strategy, and funnel execution for brands that want measurable growth.",
     siteName: "Growwlance Media",
@@ -72,6 +74,7 @@ export default function RootLayout({ children }) {
         {/* ChatBot temporarily removed to improve load time.
           To re-enable, uncomment the `ChatBot` import and this line. */}
         <Footer />
+        <WhatsAppFloat />
 
       </body>
     </html>

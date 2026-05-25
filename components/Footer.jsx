@@ -92,6 +92,9 @@ export default function Footer() {
             <li className="flex items-center gap-2">
               <Phone size={16} /> +91 9243467007
             </li>
+            <li className="flex items-center gap-2">
+              <Phone size={16} /> +91 7652313169
+            </li>
 
             <li className="flex items-center gap-2">
               <MapPin size={16} /> India

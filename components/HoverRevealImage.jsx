@@ -47,13 +47,16 @@ export default function HoverRevealImage({ src, alt, sizes, className = "" }) {
         src={src}
         alt={alt}
         fill
-        sizes={sizes}
         style={{
-            transformOrigin: origin,
-            transform: isHover && (typeof window !== "undefined" ? window.matchMedia("(hover: hover)").matches : false) ? `scale(${hoverScale})` : "scale(1)",
-            transition: "transform 320ms cubic-bezier(.2,.8,.2,1)",
+          transformOrigin: origin,
+          transform:
+            isHover && (typeof window !== "undefined" ? window.matchMedia("(hover: hover)").matches : false)
+              ? `scale(${hoverScale})`
+              : "scale(1)",
+          transition: "transform 320ms cubic-bezier(.2,.8,.2,1)",
         }}
-          className="object-contain object-center will-change-transform"
+        sizes={sizes}
+        className="object-contain object-center will-change-transform"
       />
     </div>
   );

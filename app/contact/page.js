@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
 
 const fadeUp = {
@@ -14,47 +14,57 @@ const whatsappMessage =
 const whatsappLink = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappMessage)}`;
 
 export default function ContactPage() {
-  // add client-side submit handler via effect
-  React.useEffect(() => {
-    const form = document.getElementById("contact-form");
-    const msg = document.getElementById("form-message");
+  const [statusMessage, setStatusMessage] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-    if (!form) return;
+  const serviceOptions = [
+    "Performance Marketing",
+    "SEO & Local Marketing",
+    "Social Media Marketing",
+    "Website / Funnel Design",
+    "Content Creation",
+    "Branding & Identity",
+    "Influencer & PR Marketing",
+    "Email & WhatsApp Marketing",
+    "Custom Growth Strategy",
+  ];
 
-    const onSubmit = async (e) => {
-      e.preventDefault();
-      msg.textContent = "Sending...";
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const form = e.currentTarget;
+    setIsSubmitting(true);
+    setStatusMessage("Sending...");
 
-      const data = {
-        name: form.name.value,
-        email: form.email.value,
-        service: form.service.value,
-        message: form.message.value,
-      };
-
-      try {
-        const res = await fetch('/api/contact', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(data),
-        });
-
-        const json = await res.json();
-        if (res.ok) {
-          msg.textContent = 'Message sent — we will contact you soon.';
-          form.reset();
-        } else {
-          msg.textContent = json.error || 'Unable to send message.';
-        }
-      } catch (err) {
-        console.error(err);
-        msg.textContent = 'Network error — please try again later.';
-      }
+    const formData = new FormData(form);
+    const data = {
+      name: formData.get("name"),
+      phone: formData.get("phone"),
+      email: formData.get("email"),
+      service: formData.get("service"),
+      message: formData.get("message"),
     };
 
-    form.addEventListener('submit', onSubmit);
-    return () => form.removeEventListener('submit', onSubmit);
-  }, []);
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
+
+      const json = await res.json();
+      if (res.ok) {
+        setStatusMessage("Message sent - we will contact you soon.");
+        form.reset();
+      } else {
+        setStatusMessage(json.error || "Unable to send message.");
+      }
+    } catch (err) {
+      console.error(err);
+      setStatusMessage("Network error - please try again later.");
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   return (
     <div className="bg-[#0B0F19] text-white px-6 md:px-16 py-28">
@@ -93,8 +103,9 @@ export default function ContactPage() {
           </div>
 
             <div className="space-y-4 text-gray-300">
-              <p>📧 info@Growwlance.com</p>
+              <p>📧 agencygrowlance@gmail.com </p>
               <p>📞 +91 9243467007</p>
+              <p>📞 +91 7652313169</p>
               <p>📍 India</p>
             </div>
 
@@ -111,6 +122,7 @@ export default function ContactPage() {
           <form
             id="contact-form"
             className="bg-white/5 p-8 rounded-2xl backdrop-blur-lg space-y-6"
+            onSubmit={handleSubmit}
           >
             <div>
               <label className="text-sm text-gray-400">Full Name</label>
@@ -152,11 +164,17 @@ export default function ContactPage() {
 
             <div>
               <label className="text-sm text-gray-400">Service Needed</label>
-              <select name="service" id="service" className="w-full mt-2 px-4 py-3 rounded-xl bg-[#0B0F19] border border-white/10 focus:outline-none">
-                <option>Performance Marketing</option>
-                <option>SEO</option>
-                <option>Social Media</option>
-                <option>Website/Funnel</option>
+              <select
+                name="service"
+                id="service"
+                className="w-full mt-2 px-4 py-3 rounded-xl bg-[#0B0F19] border border-white/10 focus:outline-none"
+                defaultValue="Performance Marketing"
+              >
+                {serviceOptions.map((service) => (
+                  <option key={service} value={service}>
+                    {service}
+                  </option>
+                ))}
               </select>
             </div>
 
@@ -175,12 +193,13 @@ export default function ContactPage() {
             <button
               type="submit"
               id="submit"
+              disabled={isSubmitting}
               className="w-full px-6 py-3 rounded-xl bg-linear-to-r from-amber-500 to-stone-700 hover:scale-105 hover:shadow-[0_0_25px_rgba(245,158,11,0.6)] transition"
             >
-              Send Message
+              {isSubmitting ? "Sending..." : "Send Message"}
             </button>
 
-            <p id="form-message" className="text-center text-sm mt-2"></p>
+            <p id="form-message" className="text-center text-sm mt-2">{statusMessage}</p>
           </form>
         </motion.div>
       </div>
@@ -204,7 +223,7 @@ export default function ContactPage() {
           href={whatsappLink}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-block mt-6 px-6 py-3 border border-gray-600 rounded-xl hover:bg-white/10 transition"
+          className="inline-block mt-6 px-6 py-3 border border-gray-600 rounded-xl hover:bg-white/10 transition bg-green-500 text-white"
         >
           Chat on WhatsApp
         </a>
