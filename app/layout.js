@@ -12,10 +12,10 @@ import WhatsAppFloat from "@/components/WhatsAppFloat";
 
 export const metadata = {
   title: {
-    default: "Growwlance Media | Performance Marketing & SEO Growth",
-    template: "%s | Growwlance Media",
+    default: "Growwlance Marketing | Performance Marketing & SEO Growth",
+    template: "%s | Growwlance Marketing",
   },
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000"),
+  metadataBase: new URL("https://growwlance.in"),
   description:
     "Performance marketing, SEO, creative strategy, and funnel execution for brands that want measurable growth.",
   keywords: [
@@ -26,10 +26,13 @@ export const metadata = {
     "funnel optimization",
     "growth marketing",
   ],
-  applicationName: "Growwlance Media",
-  authors: [{ name: "Growwlance Media" }],
-  creator: "Growwlance Media",
-  publisher: "Growwlance Media",
+  applicationName: "Growwlance Marketing",
+  authors: [{ name: "Growwlance Marketing" }],
+  creator: "Growwlance Marketing",
+  publisher: "Growwlance Marketing",
+  alternates: {
+    canonical: "https://growwlance.in",
+  },
   robots: {
     index: true,
     follow: true,
@@ -45,14 +48,19 @@ export const metadata = {
     title: "Growwlance Marketing | Performance Marketing & SEO Growth",
     description:
       "Performance marketing, SEO, creative strategy, and funnel execution for brands that want measurable growth.",
-    siteName: "Growwlance Media",
+    siteName: "Growwlance Marketing",
     type: "website",
+    url: "https://growwlance.in",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Growwlance Media | Performance Marketing & SEO Growth",
+    title: "Growwlance Marketing | Performance Marketing & SEO Growth",
     description:
       "Performance marketing, SEO, creative strategy, and funnel execution for brands that want measurable growth.",
+  },
+
+  icons: {
+    icon: "/favicon.ico",
   },
 };
 
@@ -64,7 +72,6 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className="bg-[#0B0F19] text-white">
-
         {/* Global UI */}
         <ScrollProgress />
 
@@ -75,7 +82,6 @@ export default function RootLayout({ children }) {
           To re-enable, uncomment the `ChatBot` import and this line. */}
         <Footer />
         <WhatsAppFloat />
-
       </body>
     </html>
   );
