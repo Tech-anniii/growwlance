@@ -1,86 +1,147 @@
 import "./globals.css";
-// import dynamic from "next/dynamic";
+
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ScrollProgress from "@/components/ScrollProgress";
 import WhatsAppFloat from "@/components/WhatsAppFloat";
 
-// ChatBot is temporarily disabled to reduce page load.
-// To re-enable, uncomment the lines below.
-// import dynamic from "next/dynamic";
-// const ChatBot = dynamic(() => import("@/components/ChatBot"));
+const siteUrl = "https://growwlance.in";
 
 export const metadata = {
+  metadataBase: new URL(siteUrl),
+
   title: {
-    default: "Growwlance Marketing | Performance Marketing & SEO Growth",
-    template: "%s | Growwlance Marketing",
+    default:
+      "Growwlance | Digital Marketing & Website Development Agency",
+    template: "%s | Growwlance",
   },
-  metadataBase: new URL("https://growwlance.in"),
+
   description:
-    "Performance marketing, SEO, creative strategy, and funnel execution for brands that want measurable growth.",
+    "Growwlance is a digital marketing and website development agency in India helping businesses grow with SEO, performance marketing, social media marketing, web development, branding, content creation, and AI automation.",
+
   keywords: [
-    "performance marketing",
-    "SEO",
+    "Growwlance",
     "digital marketing agency",
-    "paid media",
-    "funnel optimization",
-    "growth marketing",
+    "digital marketing agency India",
+    "digital marketing company India",
+    "SEO agency India",
+    "SEO services India",
+    "performance marketing agency",
+    "performance marketing services",
+    "social media marketing agency",
+    "social media marketing services",
+    "website development company",
+    "website development agency India",
+    "web design agency",
+    "Next.js development",
+    "branding agency",
+    "content marketing agency",
+    "AI automation agency",
+    "lead generation agency",
   ],
-  applicationName: "Growwlance Marketing",
-  authors: [{ name: "Growwlance Marketing" }],
-  creator: "Growwlance Marketing",
-  publisher: "Growwlance Marketing",
+
+  authors: [
+    {
+      name: "Growwlance",
+      url: siteUrl,
+    },
+  ],
+
+  creator: "Growwlance",
+  publisher: "Growwlance",
+
+  category: "Digital Marketing",
+
   alternates: {
-    canonical: "https://growwlance.in",
+    canonical: "/",
   },
+
   robots: {
     index: true,
     follow: true,
+
     googleBot: {
       index: true,
       follow: true,
-      maxImagePreview: "large",
-      maxSnippet: -1,
-      maxVideoPreview: -1,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
     },
   },
+
   openGraph: {
-    title: "Growwlance Marketing | Performance Marketing & SEO Growth",
+    title:
+      "Growwlance | Digital Marketing & Website Development Agency",
+
     description:
-      "Performance marketing, SEO, creative strategy, and funnel execution for brands that want measurable growth.",
-    siteName: "Growwlance Marketing",
+      "Grow your business with SEO, performance marketing, social media marketing, website development, branding, content, and AI automation.",
+
+    url: siteUrl,
+
+    siteName: "Growwlance",
+
+    locale: "en_IN",
+
     type: "website",
-    url: "https://growwlance.in",
+
+    images: [
+      {
+        url: "/home/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Growwlance - Digital Marketing and Website Development Agency",
+      },
+    ],
   },
+
   twitter: {
     card: "summary_large_image",
-    title: "Growwlance Marketing | Performance Marketing & SEO Growth",
+
+    title:
+      "Growwlance | Digital Marketing & Website Development Agency",
+
     description:
-      "Performance marketing, SEO, creative strategy, and funnel execution for brands that want measurable growth.",
+      "SEO, performance marketing, social media, website development, branding, content, and AI automation for growing businesses.",
+
+    images: ["/home/og-image.jpg"],
+
+    creator: "@growwlance",
   },
 
   icons: {
-    icon: "/favicon.ico",
+    icon: [
+      {
+        url: "/favicon.ico",
+        sizes: "any",
+      },
+    ],
+
+    apple: "/apple-touch-icon.png",
+  },
+
+  verification: {
+    google: "PASTE_YOUR_GOOGLE_SEARCH_CONSOLE_VERIFICATION_CODE_HERE",
   },
 };
 
 export const viewport = {
-  themeColor: "#0B0F19",
+  width: "device-width",
+  initialScale: 1,
+  themeColor: "#050816",
 };
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className="bg-[#0B0F19] text-white">
-        {/* Global UI */}
+      <body className="min-h-screen bg-[#050816] text-white antialiased">
         <ScrollProgress />
 
-        {/* Layout */}
         <Navbar />
+
         {children}
-        {/* ChatBot temporarily removed to improve load time.
-          To re-enable, uncomment the `ChatBot` import and this line. */}
+
         <Footer />
+
         <WhatsAppFloat />
       </body>
     </html>

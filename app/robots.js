@@ -1,9 +1,16 @@
 export default function robots() {
+  const baseUrl = "https://growwlance.in";
+
   return {
-    rules: {
-      userAgent: "*",
-      allow: "/",
-    },
-    sitemap: "https://growwlance.in/sitemap.xml",
+    rules: [
+      {
+        userAgent: "*",
+        allow: "/",
+      },
+    ],
+
+    sitemap: `${baseUrl}/sitemap.xml`,
+
+    host: baseUrl,
   };
 }
